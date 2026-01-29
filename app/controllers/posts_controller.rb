@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts
   def index
-    @posts = Post.order(created_at: :desc).page(params[:page]).per(4)
+    @posts = Post.order(created_at: :desc).page(params[:page]).per(6)
   end
 
   # GET /posts/1

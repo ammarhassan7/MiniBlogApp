@@ -1,28 +1,109 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow custom-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
-      <i class="fas fa-feather-alt"></i> Blog App
-    </a>
 
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav ms-auto">
+    <%= link_to root_path, class: "navbar-brand fw-bold fs-4 d-flex align-items-center" do %>
+      <i class="fas fa-feather-alt me-2 text-warning"></i>
+      <span style="letter-spacing: 1px;">Blog App</span>
+    <% end %>
+
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+
+
+      <ul class="navbar-nav ms-auto align-items-center gap-2">
+
         <% if user_signed_in? %>
-          <li class="nav-item d-flex align-items-center text-light me-3">
-            <i class="fas fa-user-circle fa-lg me-2"></i>
-            <%= current_user.email %>
-          </li>
-          <li class="nav-item">
-            <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-light btn-sm" %>
-          </li>
-        <% else %>
           <li class="nav-item me-2">
-            <%= link_to "Login", new_user_session_path, class: "btn btn-outline-light btn-sm" %>
+            <%= link_to new_post_path, class: "btn btn-light rounded-pill px-4 fw-bold text-primary shadow-sm hover-scale" do %>
+              <i class="fas fa-plus small me-1"></i> New Post
+            <% end %>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 p-0" href="#" role="button" data-bs-toggle="dropdown">
+              <div class="user-avatar shadow-sm">
+                <%= current_user.email.first.upcase %>
+              </div>
+              <span class="d-none d-lg-block text-white-50 small">
+                <%= current_user.email.split('@')[0] %>
+              </span>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-3 animate-slide-in">
+              <li>
+                <h6 class="dropdown-header text-muted text-uppercase small">Signed in as</h6>
+                <span class="dropdown-item-text fw-bold text-dark"><%= current_user.email %></span>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <%= link_to "#", class: "dropdown-item" do %>
+                  <i class="fas fa-user-cog me-2 text-secondary"></i> Account Settings
+                <% end %>
+              </li>
+              <li>
+                <%= button_to destroy_user_session_path, method: :delete, class: "dropdown-item text-danger", form: { class: "d-block" } do %>
+                  <i class="fas fa-sign-out-alt me-2"></i> Logout
+                <% end %>
+              </li>
+            </ul>
+          </li>
+
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Log In", new_user_session_path, class: "nav-link text-white fw-semibold px-3" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-sm" %>
+            <%= link_to new_user_registration_path, class: "btn btn-outline-light rounded-pill px-4 fw-bold" do %>
+              Get Started
+            <% end %>
           </li>
         <% end %>
+
       </ul>
     </div>
   </div>
 </nav>
+
+<style>
+
+    .custom-navbar {
+        background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%); /
+        padding: 0.8rem 0;
+    }
+
+
+    .user-avatar {
+        width: 38px;
+        height: 38px;
+        background-color: white;
+        color: #1e3c72;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1.1rem;
+        border: 2px solid rgba(255,255,255,0.2);
+    }
+
+
+    .hover-scale {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .hover-scale:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+    }
+
+
+    .animate-slide-in {
+        animation: slideIn 0.2s ease-out;
+    }
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>

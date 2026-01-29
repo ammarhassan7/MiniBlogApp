@@ -1,61 +1,141 @@
-<footer class="bg-dark text-light py-5 mt-auto">
-  <div class="container">
-    <div class="row">
+<footer class="footer-custom text-white pt-5 mt-auto">
+  <div class="container pb-4">
+    <div class="row gy-4">
 
-      <div class="col-md-4 mb-4 mb-md-0">
-        <h5 class="text-uppercase mb-3 fw-bold text-warning">
-          <i class="fas fa-feather-alt"></i> Blog App
+      <div class="col-lg-4 col-md-6">
+        <h5 class="text-uppercase mb-4 fw-bold text-warning d-flex align-items-center">
+          <i class="fas fa-feather-alt fa-lg me-2"></i> Blog App
         </h5>
-        <p class="small text-muted">
-          A platform to share ideas, stories, and knowledge. Built with Ruby on Rails & MongoDB.
+        <p class="text-white-50 small pe-lg-5" style="line-height: 1.8;">
+          A community-driven platform to share ideas, stories, and knowledge. Built with the power of <strong>Ruby on Rails 7</strong> & <strong>MongoDB</strong>.
         </p>
+        <div class="mt-4">
+            <span class="badge bg-white bg-opacity-10 border border-white border-opacity-25 fw-normal px-3 py-2">
+                v1.0.0
+            </span>
+        </div>
       </div>
 
-      <div class="col-md-4 mb-4 mb-md-0">
-        <h5 class="text-uppercase mb-3 fw-bold">Quick Links</h5>
-        <ul class="list-unstyled">
-          <li class="mb-2">
-            <%= link_to root_path, class: "text-decoration-none text-light opacity-75 hover-opacity-100" do %>
-              <i class="fas fa-home me-2"></i> Home
+      <div class="col-lg-4 col-md-6">
+        <h5 class="text-uppercase mb-4 fw-bold footer-heading">Quick Navigation</h5>
+        <ul class="list-unstyled mb-0">
+          <li class="mb-3">
+            <%= link_to root_path, class: "footer-link d-inline-flex align-items-center" do %>
+              <i class="fas fa-chevron-right me-2 small text-warning"></i> Home
             <% end %>
           </li>
+
           <% if user_signed_in? %>
-            <li class="mb-2">
-              <%= link_to new_post_path, class: "text-decoration-none text-light opacity-75 hover-opacity-100" do %>
-                <i class="fas fa-pen me-2"></i> New Post
+            <li class="mb-3">
+              <%= link_to new_post_path, class: "footer-link d-inline-flex align-items-center" do %>
+                <i class="fas fa-chevron-right me-2 small text-warning"></i> Write a Story
               <% end %>
             </li>
-            <li class="mb-2">
-              <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "text-decoration-none text-light opacity-75 hover-opacity-100" do %>
-                <i class="fas fa-sign-out-alt me-2"></i> Logout
+            <li class="mb-3">
+              <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "footer-link d-inline-flex align-items-center" do %>
+                <i class="fas fa-chevron-right me-2 small text-warning"></i> Logout
               <% end %>
             </li>
           <% else %>
-            <li class="mb-2">
-              <%= link_to new_user_session_path, class: "text-decoration-none text-light opacity-75 hover-opacity-100" do %>
-                <i class="fas fa-sign-in-alt me-2"></i> Login
+            <li class="mb-3">
+              <%= link_to new_user_session_path, class: "footer-link d-inline-flex align-items-center" do %>
+                <i class="fas fa-chevron-right me-2 small text-warning"></i> Login / Sign Up
               <% end %>
             </li>
           <% end %>
         </ul>
       </div>
 
-      <div class="col-md-4">
-        <h5 class="text-uppercase mb-3 fw-bold">Connect</h5>
-        <div class="mb-3">
-          <a href="#" class="text-light me-3 fs-5 opacity-75 hover-opacity-100"><i class="fab fa-github"></i></a>
-          <a href="#" class="text-light me-3 fs-5 opacity-75 hover-opacity-100"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="text-light fs-5 opacity-75 hover-opacity-100"><i class="fab fa-linkedin"></i></a>
+      <div class="col-lg-4 col-md-12">
+        <h5 class="text-uppercase mb-4 fw-bold footer-heading">Stay Connected</h5>
+        <p class="text-white-50 small mb-4">Follow the developer journey on GitHub or connect on social media.</p>
+
+        <div class="d-flex gap-3">
+          <a href="https://github.com/ammarhassan7/MiniBlogApp" target="_blank" class="social-btn">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="#" class="social-btn">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-btn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
         </div>
-        <p class="small text-muted mb-0">
-          &copy; <%= Time.now.year %> Capstone Blog.<br>All rights reserved.
-        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="copyright-bar py-3 mt-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+      <div class="small text-white-50 mb-2 mb-md-0">
+        &copy; <%= Time.now.year %> <strong>Blog App</strong>. All rights reserved.
+      </div>
+      <div class="small text-white-50">
+        Made with <i class="fas fa-heart text-danger mx-1"></i> by Ammar
       </div>
     </div>
   </div>
 </footer>
 
 <style>
-    .hover-opacity-100:hover { opacity: 1 !important; text-decoration: underline !important; }
-    .opacity-75 { opacity: 0.75; }
+
+    .footer-custom {
+        background: linear-gradient(to bottom, #1a1a2e, #16213e);
+        color: #e0e0e0;
+        box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+    }
+
+
+    .copyright-bar {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+
+    .footer-link {
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.7);
+        transition: all 0.3s ease;
+    }
+    .footer-link:hover {
+        color: #fff;
+        transform: translateX(8px); /* Moves link to the right */
+    }
+
+
+    .social-btn {
+        width: 40px;
+        height: 40px;
+        background: rgba(255,255,255,0.1);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    .social-btn:hover {
+        background: #ffc107; /* Warning color for hover */
+        color: #000;
+        transform: translateY(-3px); /* Lifts up */
+        box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+    }
+
+
+    .footer-heading {
+        position: relative;
+        padding-bottom: 10px;
+    }
+    .footer-heading::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 40px;
+        height: 2px;
+        background-color: #ffc107; /* Warning color underline */
+    }
 </style>
