@@ -1,0 +1,38 @@
+<%= form_with(model: post, class: "needs-validation") do |form| %>
+
+  <% if post.errors.any? %>
+    <div class="alert alert-danger shadow-sm">
+      <h6 class="alert-heading"><i class="fas fa-exclamation-circle"></i> Please fix the following errors:</h6>
+      <ul class="mb-0 ps-3">
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-4">
+    <%= form.label :title, class: "form-label fw-bold text-secondary" %>
+    <div class="input-group">
+      <span class="input-group-text bg-light border-end-0"><i class="fas fa-heading text-muted"></i></span>
+      <%= form.text_field :title,
+                          class: "form-control border-start-0 ps-0",
+                          placeholder: "Enter an engaging title...",
+                          autofocus: true %>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :body, class: "form-label fw-bold text-secondary" %>
+    <%= form.text_area :body,
+                       rows: 8,
+                       class: "form-control",
+                       placeholder: "What's on your mind today?" %>
+    <div class="form-text text-end text-muted small">Markdown supported</div>
+  </div>
+
+  <div class="d-grid gap-2">
+    <%= form.submit "Publish Post", class: "btn btn-success btn-lg shadow-sm" %>
+  </div>
+
+<% end %>

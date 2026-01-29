@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <i class="fas fa-feather-alt"></i> Blog App
+    </a>
+
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item d-flex align-items-center text-light me-3">
+            <i class="fas fa-user-circle fa-lg me-2"></i>
+            <%= current_user.email %>
+          </li>
+          <li class="nav-item">
+            <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-light btn-sm" %>
+          </li>
+        <% else %>
+          <li class="nav-item me-2">
+            <%= link_to "Login", new_user_session_path, class: "btn btn-outline-light btn-sm" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-sm" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,64 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+
+      <div class="card shadow-lg border-0 rounded-3 mb-5">
+        <div class="card-body p-5">
+          <h1 class="display-5 fw-bold mb-3"><%= @post.title %></h1>
+
+          <div class="d-flex align-items-center text-muted mb-4 pb-4 border-bottom">
+            <i class="fas fa-user-circle fa-2x me-2"></i>
+            <div>
+              <span class="fw-bold text-dark"><%= @post.user.email %></span><br>
+              <small>Posted <%= time_ago_in_words(@post.created_at) %> ago</small>
+            </div>
+          </div>
+
+          <div class="lead text-break mb-5">
+            <%= @post.body %>
+          </div>
+
+          <% if can? :update, @post %>
+            <div class="d-flex gap-2 border-top pt-4">
+              <%= link_to edit_post_path(@post), class: "btn btn-warning" do %>
+                <i class="fas fa-edit"></i> Edit Post
+              <% end %>
+
+              <%= button_to @post, method: :delete, class: "btn btn-danger", form: { class: "d-inline" } do %>
+                <i class="fas fa-trash-alt"></i> Delete Post
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <h3 class="mb-4 text-primary">
+        <i class="fas fa-comments"></i> Comments (<%= @post.comments.count %>)
+      </h3>
+
+      <div class="list-group shadow-sm mb-5">
+        <% if @post.comments.any? %>
+          <%= render @post.comments %>
+        <% else %>
+          <div class="list-group-item p-4 text-center text-muted fst-italic">
+            No comments yet. Be the first to share your thoughts!
+          </div>
+        <% end %>
+      </div>
+
+      <div class="card bg-light border-0 shadow-sm mb-5">
+        <div class="card-body p-4">
+          <h5 class="card-title mb-3">Leave a Reply</h5>
+          <%= render 'comments/form' %>
+        </div>
+      </div>
+
+      <div class="mb-5">
+        <%= link_to posts_path, class: "text-decoration-none text-muted" do %>
+          <i class="fas fa-arrow-left"></i> Back to Feed
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

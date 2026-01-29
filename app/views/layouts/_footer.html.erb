@@ -1,0 +1,61 @@
+<footer class="bg-dark text-light py-5 mt-auto">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-4 mb-4 mb-md-0">
+        <h5 class="text-uppercase mb-3 fw-bold text-warning">
+          <i class="fas fa-feather-alt"></i> Blog App
+        </h5>
+        <p class="small text-muted">
+          A platform to share ideas, stories, and knowledge. Built with Ruby on Rails & MongoDB.
+        </p>
+      </div>
+
+      <div class="col-md-4 mb-4 mb-md-0">
+        <h5 class="text-uppercase mb-3 fw-bold">Quick Links</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <%= link_to root_path, class: "text-decoration-none text-light opacity-75 hover-opacity-100" do %>
+              <i class="fas fa-home me-2"></i> Home
+            <% end %>
+          </li>
+          <% if user_signed_in? %>
+            <li class="mb-2">
+              <%= link_to new_post_path, class: "text-decoration-none text-light opacity-75 hover-opacity-100" do %>
+                <i class="fas fa-pen me-2"></i> New Post
+              <% end %>
+            </li>
+            <li class="mb-2">
+              <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "text-decoration-none text-light opacity-75 hover-opacity-100" do %>
+                <i class="fas fa-sign-out-alt me-2"></i> Logout
+              <% end %>
+            </li>
+          <% else %>
+            <li class="mb-2">
+              <%= link_to new_user_session_path, class: "text-decoration-none text-light opacity-75 hover-opacity-100" do %>
+                <i class="fas fa-sign-in-alt me-2"></i> Login
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="col-md-4">
+        <h5 class="text-uppercase mb-3 fw-bold">Connect</h5>
+        <div class="mb-3">
+          <a href="#" class="text-light me-3 fs-5 opacity-75 hover-opacity-100"><i class="fab fa-github"></i></a>
+          <a href="#" class="text-light me-3 fs-5 opacity-75 hover-opacity-100"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-light fs-5 opacity-75 hover-opacity-100"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p class="small text-muted mb-0">
+          &copy; <%= Time.now.year %> Capstone Blog.<br>All rights reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+    .hover-opacity-100:hover { opacity: 1 !important; text-decoration: underline !important; }
+    .opacity-75 { opacity: 0.75; }
+</style>

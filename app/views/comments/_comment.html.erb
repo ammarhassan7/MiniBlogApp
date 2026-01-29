@@ -1,0 +1,29 @@
+<div class="list-group-item list-group-item-action p-3">
+  <div class="d-flex w-100 justify-content-between align-items-center mb-2">
+
+    <div class="d-flex align-items-center">
+      <div class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center me-2" style="width: 32px; height: 32px; font-size: 0.8rem;">
+        <%= comment.user.email.first.upcase %>
+      </div>
+      <div>
+        <h6 class="mb-0 fw-bold text-dark"><%= comment.user.email %></h6>
+        <small class="text-muted" style="font-size: 0.8rem;">
+          <%= time_ago_in_words(comment.created_at) %> ago
+        </small>
+      </div>
+    </div>
+
+    <% if can? :destroy, comment %>
+      <%= link_to [comment.post, comment],
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this comment?" },
+                  class: "btn btn-sm btn-outline-danger border-0",
+                  title: "Delete Comment" do %>
+        <i class="fas fa-times"></i>
+      <% end %>
+    <% end %>
+  </div>
+
+  <p class="mb-1 ps-5 text-secondary">
+    <%= comment.body %>
+  </p>
+</div>
